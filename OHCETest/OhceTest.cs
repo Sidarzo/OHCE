@@ -28,7 +28,7 @@ namespace OHCETest
             //ALORS celle ci est renvoyée en miroir
             Assert.Contains("radar",result);
             // Et Bien dit ...
-            Assert.EndsWith("Bien dit!",result);
+            Assert.Contains("Bien dit!",result);
         }
         [Fact(DisplayName = "QUAND on saisit une chaîne ALORS «Bonjour» est envoyé avant toute réponse")]
         public void TestBonjour() {
@@ -38,6 +38,15 @@ namespace OHCETest
 
             //ALORS celle ci est renvoyée en miroir
             Assert.StartsWith("Bonjour!",result);
+        }
+        [Fact(DisplayName = "QUAND on saisit une chaîne ALORS «Au revoir» est envoyé en dernier")]
+        public void TestAuRevoir() {
+
+            // QUAND on saisait une chaine
+            string result = Ohce.Palindrome("radar");
+
+            //ALORS celle ci est renvoyée en miroir
+            Assert.EndsWith("Au revoir!",result);
         }
     }
 }
