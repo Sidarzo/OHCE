@@ -1,24 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace OHCE
+namespace OHCE;
+
+public class Ohce
 {
-    public static class Ohce
+    private readonly ILangue _langue;
+    private readonly PériodeJournée _périodeJournée;
+
+    public Ohce(ILangue langue, PériodeJournée périodeJournée)
     {
-        public static string Palindrome(string mot)
-        {
-            string motreverse = new string(mot.Reverse().ToArray());
+        _langue = langue;
+        _périodeJournée = périodeJournée;
+    }
 
-            if (mot.Equals(motreverse)){
-                return $"Bonjour!{motreverse} Bien dit!Au revoir!";
-            }
-            return $"Bonjour!{motreverse}Au revoir!";
+    public string Palindrome(string input)
+    {
+        var stringBuilder = 
+            new StringBuilder(_langue.DireBonjour(_périodeJournée));
 
+        var reversed = new string(
+            input.Reverse().ToArray()
+        );
 
-        }
+        stringBuilder.Append(reversed);
+
+        if (reversed.Equals(input))
+            stringBuilder.Append(_langue.BienDit);
+
+        stringBuilder.Append(_langue.AuRevoir);
+
+        return stringBuilder.ToString();
     }
 }
