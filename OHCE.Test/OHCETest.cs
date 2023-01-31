@@ -1,4 +1,5 @@
 using OHCE.Test.utilities;
+using OHCE.Test.utilities.Builder;
 
 namespace OHCE.Test
 {
@@ -7,7 +8,7 @@ namespace OHCE.Test
         [Fact(DisplayName = "QUAND un mot est rentré ALORS on obtient son miroir")]
         public void TestMiroir()
         {
-            var resultat = new Ohce(new LangueStub()).Traitement("laval");
+            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement("laval");
             Assert.Contains("laval", resultat);
         }
 
@@ -17,7 +18,7 @@ namespace OHCE.Test
             const string palindrome = "kayak";
 
             // QUAND un mot est rentrer
-            var resultat = new Ohce(new LangueStub()).Traitement(palindrome);
+            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement(palindrome);
 
             // ALORS on obtient son palindrome*
             Assert.Contains(palindrome, resultat);
@@ -34,7 +35,7 @@ namespace OHCE.Test
         [Fact(DisplayName ="QUAND un mot est rentré ALORS Bonjour est envoyé avant toute chose")]
         public void TestBonjour()
         {
-            var resultat = new Ohce(new LangueStub()).Traitement("Le TDD c'est super !");
+            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement("Le TDD c'est super !");
             Assert.StartsWith("Bonjour", resultat);
         }
 
@@ -42,7 +43,7 @@ namespace OHCE.Test
         public void TestAuRevoir()
         {
             // QUAND un mot est rentré 
-            var resultat = new Ohce(new LangueStub()).Traitement("Super le TDD !!");
+            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement("Super le TDD !!");
             //ALORS Au revoir est envoyé en dernier
             Assert.EndsWith("Au revoir", resultat);
         }
@@ -52,7 +53,7 @@ namespace OHCE.Test
         public void TestPalindromeLangue(ILangue langue, string palindrome)
         {
             // ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome
-            var resultat = new Ohce(langue).Traitement(palindrome);
+            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement(palindrome);
 
             //ALORS il est renvoyé bien dit
             Assert.Contains(palindrome, resultat);
@@ -71,7 +72,7 @@ namespace OHCE.Test
         public void TestBonjourLangue(ILangue langue)
         {
             //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
-            var resultat = new Ohce(langue).Traitement("Le tdd !!");
+            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement("Le tdd !!");
 
             // ALORS il est renvoyé bonjour ET dans sa langue
 
@@ -84,7 +85,7 @@ namespace OHCE.Test
         public void TestAuRevoirLangue(ILangue langue)
         {
             //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
-            var resultat = new Ohce(langue).Traitement("Le tdd !!");
+            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement("Le tdd !!");
 
             // ALORS il est renvoyé au revoir ET dans sa langue
 
