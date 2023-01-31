@@ -1,3 +1,5 @@
+using OHCE.Test.utilities;
+
 namespace OHCE.Test
 {
     public class OHCETest
@@ -43,6 +45,25 @@ namespace OHCE.Test
             var resultat = new Ohce().Traitement("Super le TDD !!");
             //ALORS Au revoir est envoyé en dernier
             Assert.EndsWith("Au revoir", resultat);
+        }
+
+        [Fact(DisplayName ="ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome ALORS il est renvoyé bien dit ET dans sa langue")]
+        [ClassData(typeof(PalindromeClass))]
+        public void TestPalindromeLangue(ILangue langue, string palindrome, string biendit)
+        {
+            // ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome
+            var resultat = new Ohce(langue).Traitement(palindrome);
+
+            //ALORS il est renvoyé bien dit
+            Assert.Contains(palindrome, resultat);
+
+
+            var indexPalindrome = resultat.IndexOf(palindrome, StringComparison.Ordinal);
+            var endPalindrome = indexPalindrome + palindrome.Length;
+            resultat = resultat[endPalindrome..];
+
+            // ET bien dit ! est envoyé dans sa langue
+            Assert.Contains(biendit, resultat);
         }
     }
 
