@@ -67,7 +67,7 @@ namespace OHCE.Test
         }
 
         [Theory(DisplayName = "ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot ALORS il est renvoyé bonjour ET dans sa langue")]
-        [ClassData(typeof(PalindromeClass))]
+        [ClassData(typeof(BonjourClassData))]
         public void TestBonjourLangue(ILangue langue)
         {
             //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
