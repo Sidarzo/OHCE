@@ -53,7 +53,7 @@ namespace OHCE.Test
         public void TestPalindromeLangue(ILangue langue, string palindrome)
         {
             // ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome
-            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement(palindrome);
+            var resultat = new OHCEBuilder().withlangue(langue).build().Traitement(palindrome);
 
             //ALORS il est renvoyé bien dit
             Assert.Contains(palindrome, resultat);
@@ -72,7 +72,7 @@ namespace OHCE.Test
         public void TestBonjourLangue(ILangue langue)
         {
             //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
-            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement("Le tdd !!");
+            var resultat = new OHCEBuilder().withlangue(langue).build().Traitement("Le tdd !!");
 
             // ALORS il est renvoyé bonjour ET dans sa langue
 
@@ -85,12 +85,23 @@ namespace OHCE.Test
         public void TestAuRevoirLangue(ILangue langue)
         {
             //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
-            var resultat = new OHCEBuilder().withlangue(new LangueStub()).build().Traitement("Le tdd !!");
+            var resultat = new OHCEBuilder().withlangue(langue).build().Traitement("Le tdd !!");
 
             // ALORS il est renvoyé au revoir ET dans sa langue
 
             Assert.EndsWith(langue.AuRevoir, resultat);
 
+        }
+
+        [Theory(DisplayName = "ETANT DONNE un utilisateur parlant une langue ET que la période de la journée est <période> QUAND on saisit une chaîne ALORS <salutation> de cette langue à cette période est envoyé avant tout")]
+        [ClassData(typeof(SalutationsPeriodeClassData))]
+        public void TestBonjourLanguePeriode(ILangue langue, string periode)
+        {
+            //QUAND on saisit une chaîne
+            var resultat = new OHCEBuilder().withlangue(langue).withperiode(periode).build().Traitement("test de chaine");
+
+            //ALORS <bonjour> de cette langue à cette période est envoyé avant tout
+            Assert.StartsWith(langue.Bonjour + periode, resultat);
         }
 
 

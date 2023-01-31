@@ -11,15 +11,9 @@ namespace OHCE.Test.utilities
     {
         public IEnumerator<object[]> GetEnumerator()
         {
-            yield return new object[] { new LangueFrancais(), new PeriodeFrancais().matin };
-            yield return new object[] { new LangueFrancais(), new PeriodeFrancais().apresMidi };
-            yield return new object[] { new LangueFrancais(), new PeriodeFrancais().soiree};
-            yield return new object[] { new LangueFrancais(), new PeriodeFrancais().nuit};
+            yield return new object[] { new LangueFrancais() };
 
-            yield return new object[] { new LangueAnglais(), new PeriodeAnglais().matin };
-            yield return new object[] { new LangueAnglais(), new PeriodeAnglais().apresMidi };
-            yield return new object[] { new LangueAnglais(), new PeriodeAnglais().soiree };
-            yield return new object[] { new LangueAnglais(), new PeriodeAnglais().nuit };
+            yield return new object[] { new LangueAnglais()};
 
         }
 
