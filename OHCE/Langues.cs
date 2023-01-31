@@ -10,11 +10,13 @@ namespace OHCE
         public class LangueFrancais : ILangue
         {
             public string BienDit => "Bien dit !";
+             public string Bonjour => "Bonjour";
         }
 
         public class LangueAnglais : ILangue
         {
             public string BienDit => "Well said !";
+            public string Bonjour => "Hello";
         }
     
 }

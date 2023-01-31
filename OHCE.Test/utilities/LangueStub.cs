@@ -2,6 +2,9 @@
 {
     internal class LangueStub : ILangue
     {
-        public string BienDit => new LangueFrancais().BienDit;
+        private ILangue langue => new LangueFrancais();
+        public string BienDit => langue.BienDit;
+        public string Bonjour => langue.Bonjour;
+
     }
 }

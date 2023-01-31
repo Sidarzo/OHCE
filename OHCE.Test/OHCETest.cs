@@ -49,7 +49,7 @@ namespace OHCE.Test
 
         [Theory(DisplayName ="ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome ALORS il est renvoyé bien dit ET dans sa langue")]
         [ClassData(typeof(PalindromeClass))]
-        public void TestPalindromeLangue(ILangue langue, string palindrome, string biendit)
+        public void TestPalindromeLangue(ILangue langue, string palindrome)
         {
             // ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome
             var resultat = new Ohce(langue).Traitement(palindrome);
@@ -63,8 +63,23 @@ namespace OHCE.Test
             resultat = resultat[endPalindrome..];
 
             // ET bien dit ! est envoyé dans sa langue
-            Assert.Contains(biendit, resultat);
+            Assert.Contains(langue.BienDit, resultat);
         }
+
+        [Theory(DisplayName = "ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot ALORS il est renvoyé bonjour ET dans sa langue")]
+        [ClassData(typeof(PalindromeClass))]
+        public void TestBonjourLangue(ILangue langue)
+        {
+            //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
+            var resultat = new Ohce(langue).Traitement("Le tdd !!");
+
+            // ALORS il est renvoyé bonjour ET dans sa langue
+
+            Assert.StartsWith(langue.Bonjour, resultat);
+
+        }
+
+
     }
 
 }
