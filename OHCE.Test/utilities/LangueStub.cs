@@ -5,6 +5,7 @@
         private ILangue langue => new LangueFrancais();
         public string BienDit => langue.BienDit;
         public string Bonjour => langue.Bonjour;
+        public string AuRevoir => langue.AuRevoir;
 
     }
 }

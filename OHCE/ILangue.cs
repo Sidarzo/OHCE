@@ -10,5 +10,6 @@ namespace OHCE
     {
         string BienDit { get; }
         string Bonjour { get; }
+        string AuRevoir { get; }
     }
 }

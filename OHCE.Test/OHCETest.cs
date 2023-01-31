@@ -67,7 +67,7 @@ namespace OHCE.Test
         }
 
         [Theory(DisplayName = "ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot ALORS il est renvoyé bonjour ET dans sa langue")]
-        [ClassData(typeof(BonjourClassData))]
+        [ClassData(typeof(SalutationsClassData))]
         public void TestBonjourLangue(ILangue langue)
         {
             //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
@@ -76,6 +76,19 @@ namespace OHCE.Test
             // ALORS il est renvoyé bonjour ET dans sa langue
 
             Assert.StartsWith(langue.Bonjour, resultat);
+
+        }
+
+        [Theory(DisplayName = "ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot ALORS il est renvoyé auRevoir ET dans sa langue")]
+        [ClassData(typeof(SalutationsClassData))]
+        public void TestAuRevoirLangue(ILangue langue)
+        {
+            //ETANT DONNE un utilisateur parlant une langue QUAND on dit un mot 
+            var resultat = new Ohce(langue).Traitement("Le tdd !!");
+
+            // ALORS il est renvoyé au revoir ET dans sa langue
+
+            Assert.StartsWith(langue.AuRevoir, resultat);
 
         }
 
