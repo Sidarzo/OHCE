@@ -11,14 +11,14 @@ namespace OHCE
         {
             public string BienDit => "Bien dit !";
              public string Bonjour => "Bonjour";
-         public string AuRevoir => "Au revoir";
+            public string AuRevoir => "Au revoir";
         }
 
         public class LangueAnglais : ILangue
         {
             public string BienDit => "Well said !";
             public string Bonjour => "Hello";
-         public string AuRevoir => "Goodbye";
+            public string AuRevoir => "Goodbye";
 
     }
 

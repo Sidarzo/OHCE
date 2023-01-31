@@ -88,7 +88,7 @@ namespace OHCE.Test
 
             // ALORS il est renvoyé au revoir ET dans sa langue
 
-            Assert.StartsWith(langue.AuRevoir, resultat);
+            Assert.EndsWith(langue.AuRevoir, resultat);
 
         }
 
