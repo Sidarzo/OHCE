@@ -3,17 +3,12 @@
     public class LangueFrançaise : ILangue
     {
         /// <inheritdoc />
+        public string Saluer(MomentDeLaJournée moment) => Expressions.Français.Salutation;
+
+        /// <inheritdoc />
+        public string Acquittance => Expressions.Français.Acquittance;
+
+        /// <inheritdoc />
         public string BienDit => Expressions.Français.BienDit;
-
-        /// <inheritdoc />
-        public string DireBonjour(PériodeJournée période)
-        {
-            return période == PériodeJournée.Soir 
-                ? Expressions.Français.Bonsoir 
-                : Expressions.Français.Bonjour;
-        }
-
-        /// <inheritdoc />
-        public string AuRevoir => Expressions.Français.AuRevoir;
     }
 }

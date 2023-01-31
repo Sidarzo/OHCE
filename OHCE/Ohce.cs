@@ -1,34 +1,27 @@
-﻿using System.Text;
+﻿using OHCE.Langues;
 
-namespace OHCE;
-
-public class Ohce
+namespace OHCE
 {
-    private readonly ILangue _langue;
-    private readonly PériodeJournée _périodeJournée;
-
-    public Ohce(ILangue langue, PériodeJournée périodeJournée)
+    public class Ohce
     {
-        _langue = langue;
-        _périodeJournée = périodeJournée;
-    }
+        private readonly ILangue _langue;
+        private readonly MomentDeLaJournée _momentDeLaJournée;
 
-    public string Palindrome(string input)
-    {
-        var stringBuilder = 
-            new StringBuilder(_langue.DireBonjour(_périodeJournée));
+        public Ohce(ILangue langue, MomentDeLaJournée momentDeLaJournée)
+        {
+            _langue = langue;
+            _momentDeLaJournée = momentDeLaJournée;
+        }
 
-        var reversed = new string(
-            input.Reverse().ToArray()
-        );
+        public string Miroir(string chaîne)
+        {
+            var miroir = new string(chaîne.Reverse().ToArray());
+            var estUnPalindrome = miroir.Equals(chaîne);
 
-        stringBuilder.Append(reversed);
-
-        if (reversed.Equals(input))
-            stringBuilder.Append(_langue.BienDit);
-
-        stringBuilder.Append(_langue.AuRevoir);
-
-        return stringBuilder.ToString();
+            return _langue.Saluer(_momentDeLaJournée)
+                   + miroir
+                   + (estUnPalindrome ? _langue.BienDit : string.Empty)
+                   + _langue.Acquittance;
+        }
     }
 }
