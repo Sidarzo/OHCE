@@ -14,7 +14,9 @@ namespace OHCE
             builderString.Append(miroir);
 
             if(miroir == mot) { builderString.Append("Bien dit !"); };
-            return builderString.ToString() + "Au revoir";
+
+            builderString.Append("Au revoir");
+            return builderString.ToString();
         }
     }
 }
