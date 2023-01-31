@@ -7,7 +7,7 @@ namespace OHCE.Test
         [Fact(DisplayName = "QUAND un mot est rentré ALORS on obtient son miroir")]
         public void TestMiroir()
         {
-            var resultat = new Ohce().Traitement("laval");
+            var resultat = new Ohce(new LangueStub()).Traitement("laval");
             Assert.Contains("laval", resultat);
         }
 
@@ -17,7 +17,7 @@ namespace OHCE.Test
             const string palindrome = "kayak";
 
             // QUAND un mot est rentrer
-            var resultat = new Ohce().Traitement(palindrome);
+            var resultat = new Ohce(new LangueStub()).Traitement(palindrome);
 
             // ALORS on obtient son palindrome*
             Assert.Contains(palindrome, resultat);
@@ -34,7 +34,7 @@ namespace OHCE.Test
         [Fact(DisplayName ="QUAND un mot est rentré ALORS Bonjour est envoyé avant toute chose")]
         public void TestBonjour()
         {
-            var resultat = new Ohce().Traitement("Le TDD c'est super !");
+            var resultat = new Ohce(new LangueStub()).Traitement("Le TDD c'est super !");
             Assert.StartsWith("Bonjour", resultat);
         }
 
@@ -42,12 +42,12 @@ namespace OHCE.Test
         public void TestAuRevoir()
         {
             // QUAND un mot est rentré 
-            var resultat = new Ohce().Traitement("Super le TDD !!");
+            var resultat = new Ohce(new LangueStub()).Traitement("Super le TDD !!");
             //ALORS Au revoir est envoyé en dernier
             Assert.EndsWith("Au revoir", resultat);
         }
 
-        [Fact(DisplayName ="ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome ALORS il est renvoyé bien dit ET dans sa langue")]
+        [Theory(DisplayName ="ETANT DONNE un utilisateur parlant une langue QUAND on dit un palindrome ALORS il est renvoyé bien dit ET dans sa langue")]
         [ClassData(typeof(PalindromeClass))]
         public void TestPalindromeLangue(ILangue langue, string palindrome, string biendit)
         {
