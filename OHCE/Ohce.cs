@@ -19,7 +19,7 @@ namespace OHCE
 
             builderString.Append(miroir);
 
-            if(miroir == mot) { builderString.Append("Bien dit !"); };
+            if(miroir == mot) { builderString.Append(langue.BienDit); };
 
             builderString.Append("Au revoir");
             return builderString.ToString();
