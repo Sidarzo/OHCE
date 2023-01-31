@@ -9,10 +9,12 @@ namespace OHCE
             var builderString = new StringBuilder();
             var miroir = new string(mot.Reverse().ToArray());
 
+            builderString.Append("Bonjour");
+
             builderString.Append(miroir);
 
             if(miroir == mot) { builderString.Append("Bien dit !"); };
-            return "Bonjour " + builderString.ToString();
+            return builderString.ToString();
         }
     }
 }
