@@ -25,7 +25,7 @@ namespace OHCE
 
             if(miroir == mot) { builderString.Append(langue.BienDit); };
 
-            builderString.Append(langue.AuRevoir);
+            builderString.Append(langue.AuRevoir + periode);
             return builderString.ToString();
         }
     }
