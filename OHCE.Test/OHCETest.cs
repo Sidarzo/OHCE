@@ -35,6 +35,15 @@ namespace OHCE.Test
             var resultat = new Ohce().Traitement("Le TDD c'est super !");
             Assert.StartsWith("Bonjour", resultat);
         }
+
+        [Fact(DisplayName ="QUAND un mot est rentré ALORS Au revoir est envoyé en dernier" )]
+        public void TestAuRevoir()
+        {
+            // QUAND un mot est rentré 
+            var resultat = new Ohce().Traitement("Super le TDD !!");
+            //ALORS Au revoir est envoyé en dernier
+            Assert.EndsWith("Au revoir", resultat);
+        }
     }
 
 }
